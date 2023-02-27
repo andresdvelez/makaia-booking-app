@@ -24,6 +24,7 @@ export const FormBodySC = styled.div`
   display: grid;
   gap: 24px;
   grid-template-columns: 1fr 1fr;
+  height: 15rem;
 `;
 
 export const BtnFormSC = styled.button`

@@ -10,7 +10,7 @@ function ServicesSection() {
       <TitleSC>Servicios disponibles</TitleSC>
       <GridSC>
         {Cards.map((card) => (
-          <CardSC>
+          <CardSC key={card.id}>
             <IconWrapperSC>{card.icon}</IconWrapperSC>
             <SubtitleSC normal>{card.title}</SubtitleSC>
             <TextSC alpha>{card.text}</TextSC>

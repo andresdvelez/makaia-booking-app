@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import destinationsRoute from "./routes/destinations.js";
 import fliesRoute from "./routes/flies.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -23,15 +24,19 @@ mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected");
 });
 
+const whiteList = ["http://localhost:3000"];
+
+app.use(cors({ origin: whiteList }));
+
 // Middlewares
 app.use(cookieParser());
 
 app.use(express.json());
 
-app.use("/api/auth", authRoute);
+app.get("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/destinations", destinationsRoute);
-app.use("/api/flies", fliesRoute);
+app.use("/api/flights", fliesRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

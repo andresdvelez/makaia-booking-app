@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.js";
 import {
   MainFormSC,
@@ -18,6 +18,8 @@ import CountryInput from "../form/CountryInput/CountryInput.jsx";
 import DateInput from "../form/DateInput/DateInput.jsx";
 import PassengersInput from "../form/PassengersInput/PassengersInput.jsx";
 import CodeInput from "../form/CodeInput/CodeInput.jsx";
+import useFetch from "../../hooks/useFetch.js";
+import DestinationInput from "../form/DestinationInput/DestinationInput.jsx";
 
 // Logic
 // import { handleAddClass } from "./script.js";
@@ -58,7 +60,7 @@ function MainForm() {
       ) : (
         <FormBodySC>
           <CountryInput label="Origen" />
-          <CountryInput label="Seleccione un destino" />
+          <DestinationInput />
           <DateInput label="Salida" />
           <DateInput label="Regreso" />
           <PassengersInput />

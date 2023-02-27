@@ -15,12 +15,9 @@ export const ContainerSC = styled.div`
 `;
 
 export const InputSC = styled.input`
-  border: none;
-  color: rgba(0, 0, 0, 0.7);
-  cursor: pointer;
-  font-size: 18px;
+  padding-inline: 20px;
+  font-size: 21px;
   font-weight: bold;
-  outline: none;
   height: 20px;
   width: 80%;
 
@@ -32,5 +29,3 @@ export const LabelSC = styled.p`
   color: rgba(0, 0, 0, 0.4);
   font-size: 15px;
 `;
-
-export const OptionSC = styled.option``;
