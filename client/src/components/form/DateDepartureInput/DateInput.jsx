@@ -68,7 +68,7 @@ function DateInput({
                 <FcMoneyTransfer />
                 <TextSC>Precios más bajos</TextSC>
               </FooterLeftSC>
-              <FooterBtnSC>Hecho</FooterBtnSC>
+              <FooterBtnSC onClick={handleClick}>Hecho</FooterBtnSC>
             </FooterSC>
           </ContainerDateSC>
         )}

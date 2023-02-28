@@ -52,5 +52,10 @@ export const SevenColGridSC = styled.div`
     align-items: center;
 
     height: 3rem;
+
+    &:hover {
+      border: 1px solid #9d2479;
+      border-radius: 8px;
+    }
   }
 `;
