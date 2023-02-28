@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   ContainerSC,
   InputBodySC,
@@ -19,6 +19,7 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import DatePicker from "../../../utils/DatePicker/DatePicker";
 import { GrClose } from "react-icons/gr";
 import { FcMoneyTransfer } from "react-icons/fc";
+import { showContext } from "../../Banner/Banner";
 
 function DateInput({
   label,
@@ -27,12 +28,12 @@ function DateInput({
   oneway,
   value,
 }) {
-  const [isShow, setIsShow] = useState(false);
+  const { showDepartureDate, setShowDepartureDate } = useContext(showContext);
 
   const iconStyle = { color: "#060606", fontSize: "26px" };
 
   const handleClick = () => {
-    setIsShow(!isShow);
+    setShowDepartureDate(!showDepartureDate);
   };
 
   return (
@@ -46,7 +47,7 @@ function DateInput({
           value={value}
           placeholder="dd/mm/yyyy"
         />
-        {isShow && (
+        {showDepartureDate && (
           <ContainerDateSC>
             <HeaderSC>
               Selecciona tus fechas

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.js";
 import { SubtitleSC } from "../../Sections/ServicesSection/style.js";
+import { showContext } from "../Banner/Banner.jsx";
 import { BodySC, ContainerSC, HeaderSC, NameSC, OptionSC } from "./style.js";
 
-function DestinationDropdown({ setIsOpen, setInputValue }) {
+function DestinationDropdown({ setInputValue }) {
   const [countries, setCountries] = useState([]);
+  const { setShowArriveCountry } = useContext(showContext);
 
   const { data, loading, error } = useFetch(
     "http://localhost:8800/api/destinations"
@@ -15,7 +17,7 @@ function DestinationDropdown({ setIsOpen, setInputValue }) {
   }, [data]);
 
   const handleClick = (inputValue) => {
-    setIsOpen(false);
+    setShowArriveCountry(false);
 
     setInputValue(inputValue);
   };

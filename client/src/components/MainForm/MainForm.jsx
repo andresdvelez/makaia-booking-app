@@ -7,6 +7,7 @@ import {
   FormBodySC,
   BtnFormSC,
   BtnLabelSC,
+  OverlaySC,
 } from "./style.js";
 
 // Icons
@@ -18,7 +19,6 @@ import CountryInput from "../form/CountryInput/CountryInput.jsx";
 import DateInput from "../form/DateDepartureInput/DateInput.jsx";
 import PassengersInput from "../form/PassengersInput/PassengersInput.jsx";
 import CodeInput from "../form/CodeInput/CodeInput.jsx";
-import useFetch from "../../hooks/useFetch.js";
 import DestinationInput from "../form/DestinationInput/DestinationInput.jsx";
 import DateArriveInput from "../form/DateArriveInput/DateArriveInput.jsx";
 
@@ -41,6 +41,8 @@ function MainForm() {
   const { year, month, day } = departureValue;
   const { yearArrive, monthArrive, dayArrive } = arriveValue;
 
+  const iconStyle = { fontSize: "19px", transform: "rotate(-30deg)" };
+
   const handleAddClass = () => {
     setIsActive(true);
   };
@@ -48,8 +50,6 @@ function MainForm() {
   const handleRemoveClass = () => {
     setIsActive(false);
   };
-
-  const iconStyle = { fontSize: "19px", transform: "rotate(-30deg)" };
 
   return (
     <MainFormSC>

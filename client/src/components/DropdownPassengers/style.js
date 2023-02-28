@@ -8,6 +8,7 @@ export const ContainerSC = styled.div`
   bottom: -3.5rem;
   right: 1rem;
   width: 17rem;
+  z-index: 99;
 
   display: flex;
   flex-direction: column;

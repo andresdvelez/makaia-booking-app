@@ -36,6 +36,9 @@ export const ContainerDateSC = styled.div`
   border-radius: 15px;
   padding: 20px;
   position: absolute;
+  top: -1rem;
+
+  z-index: 99;
 `;
 
 export const DateWrapperSC = styled.div`

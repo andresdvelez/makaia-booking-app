@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ContainerSC, InputBodySC, InputSC, LabelSC } from "./style";
 import DropdownPassengers from "../../DropdownPassengers/DropdownPassengers";
 
 // Icons
 import { IoIosArrowDown } from "react-icons/io";
+import { showContext } from "../../Banner/Banner";
 
 function PassengersInput() {
-  const [isShow, setIsShow] = useState(false);
+  const { showPassengers, setShowPassengers } = useContext(showContext);
   const [inputValue, setInputValue] = useState({
     adults: 0,
     children: 0,
@@ -19,7 +20,7 @@ function PassengersInput() {
   const iconStyle = { fontSize: "22px" };
 
   const handleClick = () => {
-    setIsShow(true);
+    setShowPassengers(!showPassengers);
   };
 
   useEffect(() => {
@@ -31,8 +32,8 @@ function PassengersInput() {
       <InputBodySC onClick={handleClick}>
         <LabelSC>Pasajeros</LabelSC>
         <InputSC type="button">{totalPassengers}</InputSC>
-        {isShow && <DropdownPassengers setInputValue={setInputValue} />}
       </InputBodySC>
+      {showPassengers && <DropdownPassengers setInputValue={setInputValue} />}
       <IoIosArrowDown style={iconStyle} />
     </ContainerSC>
   );
