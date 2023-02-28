@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   BannerSC,
   FormContainerSC,
@@ -19,13 +20,16 @@ function Banner() {
   const [showDepartureDate, setShowDepartureDate] = useState(false);
   const [showArriveDate, setShowArriveDate] = useState(false);
   const [showPassengers, setShowPassengers] = useState(false);
+  const [passengersData, setPassengersData] = useState({});
+
+  const { register, handleSubmit, reset } = useForm();
 
   const handleClick = () => {
-    setShowDepartureCountry(false)
-      setShowArriveCountry(false)
-      setShowDepartureDate(false)
-      setShowArriveDate(false)
-      setShowPassengers(false)
+    setShowDepartureCountry(false);
+    setShowArriveCountry(false);
+    setShowDepartureDate(false);
+    setShowArriveDate(false);
+    setShowPassengers(false);
   };
 
   return (
@@ -41,6 +45,11 @@ function Banner() {
         setShowDepartureDate,
         setShowArriveDate,
         setShowPassengers,
+        register,
+        handleSubmit,
+        reset,
+        passengersData,
+        setPassengersData,
       }}
     >
       <BannerSC>

@@ -5,8 +5,9 @@ import { InputSC } from "../CountryInput/style";
 import { ContainerSC, LabelSC } from "./style";
 
 function DestinationInput() {
-  const { showArriveCountry, setShowArriveCountry } = useContext(showContext);
-  const [inputValue, setInputValue] = useState("A dónde viajas?");
+  const { showArriveCountry, setShowArriveCountry, register } =
+    useContext(showContext);
+  const [inputValue, setInputValue] = useState();
 
   const handleShow = () => {
     setShowArriveCountry(true);
@@ -14,8 +15,16 @@ function DestinationInput() {
 
   return (
     <ContainerSC>
-      <InputSC readOnly value={inputValue} onClick={handleShow} />
-      {showArriveCountry && <DestinationDropdown setInputValue={setInputValue} />}
+      <InputSC
+        {...(inputValue && { ...register("destinationCity") })}
+        readOnly
+        placeholder="A dónde viajas?"
+        value={inputValue}
+        onClick={handleShow}
+      />
+      {showArriveCountry && (
+        <DestinationDropdown setInputValue={setInputValue} />
+      )}
       <LabelSC>Seleccione un destino</LabelSC>
     </ContainerSC>
   );
