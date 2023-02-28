@@ -2,7 +2,7 @@ import React from "react";
 import { FormBodySC } from "../../MainForm/style";
 import CodeInput from "../CodeInput/CodeInput";
 import CountryInput from "../CountryInput/CountryInput";
-import DateInput from "../DateInput/DateInput";
+import DateInput from "../DateDepartureInput/DateInput";
 import DestinationInput from "../DestinationInput/DestinationInput";
 import PassengersInput from "../PassengersInput/PassengersInput";
 

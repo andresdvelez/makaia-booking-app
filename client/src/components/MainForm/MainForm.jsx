@@ -15,17 +15,31 @@ import { IoAirplaneOutline } from "react-icons/io5";
 // Component
 import OneWayMenu from "../form/OneWayMenu/OneWayMenu";
 import CountryInput from "../form/CountryInput/CountryInput.jsx";
-import DateInput from "../form/DateInput/DateInput.jsx";
+import DateInput from "../form/DateDepartureInput/DateInput.jsx";
 import PassengersInput from "../form/PassengersInput/PassengersInput.jsx";
 import CodeInput from "../form/CodeInput/CodeInput.jsx";
 import useFetch from "../../hooks/useFetch.js";
 import DestinationInput from "../form/DestinationInput/DestinationInput.jsx";
+import DateArriveInput from "../form/DateArriveInput/DateArriveInput.jsx";
 
 // Logic
 // import { handleAddClass } from "./script.js";
 
 function MainForm() {
   const [isActive, setIsActive] = useState(false);
+  const [departureValue, setDepartureValue] = useState({
+    year: "YYYY",
+    month: "MM",
+    day: "DD",
+  });
+  const [arriveValue, setArriveValue] = useState({
+    yearArrive: "YYYY",
+    monthArrive: "MM",
+    dayArrive: "DD",
+  });
+
+  const { year, month, day } = departureValue;
+  const { yearArrive, monthArrive, dayArrive } = arriveValue;
 
   const handleAddClass = () => {
     setIsActive(true);
@@ -61,8 +75,20 @@ function MainForm() {
         <FormBodySC>
           <CountryInput label="Origen" />
           <DestinationInput />
-          <DateInput label="Salida" />
-          <DateInput label="Regreso" />
+          <DateInput
+            value={`${year}/${month}/${day}`}
+            label="Salida"
+            oneway={!isActive}
+            setArriveValue={setArriveValue}
+            setDepartureValue={setDepartureValue}
+          />
+          <DateArriveInput
+            value={`${yearArrive}/${monthArrive}/${dayArrive}`}
+            label="Regreso"
+            setDepartureValue={setDepartureValue}
+            oneway={!isActive}
+            setArriveValue={setArriveValue}
+          />
           <PassengersInput />
           <CodeInput />
         </FormBodySC>

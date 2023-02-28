@@ -1,5 +1,5 @@
 import React from "react";
-import { InputSC, LabelSC } from "../DateInput/style";
+import { InputSC, LabelSC } from "../DateDepartureInput/style";
 import { ContainerSC } from "./style";
 
 function CodeInput() {
