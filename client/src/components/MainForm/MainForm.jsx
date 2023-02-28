@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "./style.js";
 import {
   MainFormSC,
@@ -21,6 +22,8 @@ import PassengersInput from "../form/PassengersInput/PassengersInput.jsx";
 import CodeInput from "../form/CodeInput/CodeInput.jsx";
 import DestinationInput from "../form/DestinationInput/DestinationInput.jsx";
 import DateArriveInput from "../form/DateArriveInput/DateArriveInput.jsx";
+import { showContext } from "../Banner/Banner.jsx";
+import { useNavigate } from "react-router-dom";
 
 // Logic
 // import { handleAddClass } from "./script.js";
@@ -43,6 +46,10 @@ function MainForm() {
 
   const iconStyle = { fontSize: "19px", transform: "rotate(-30deg)" };
 
+  const { handleSubmit, reset, passengersData } = useContext(showContext);
+
+  const navigate = useNavigate();
+
   const handleAddClass = () => {
     setIsActive(true);
   };
@@ -51,8 +58,21 @@ function MainForm() {
     setIsActive(false);
   };
 
+  const onSubmit = (data) => {
+    localStorage.setItem(
+      "flight-details",
+      JSON.stringify({
+        ...data,
+        departureDate: departureValue,
+        combackDate: arriveValue,
+        passengers: passengersData,
+      })
+    );
+    navigate("/vuelos");
+  };
+
   return (
-    <MainFormSC>
+    <MainFormSC onSubmit={handleSubmit(onSubmit)}>
       <BtnWrapperSC>
         <ButtonSC
           type="button"

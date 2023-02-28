@@ -102,16 +102,21 @@ function DatePicker({ title, setArriveValue, setDepartureValue, oneway }) {
         </HeaderSC>
         <BodySC>
           <SevenColGridSC heading>
-            {getSortedDays(currentYear, currentMonth).map((day) => (
-              <p>{day}</p>
+            {getSortedDays(currentYear, currentMonth).map((day, i) => (
+              <p key={i}>{day}</p>
             ))}
           </SevenColGridSC>
           <SevenColGridSC onClick={handleSelection}>
             {range(
               1,
               getNumberOfDaysInMonth(currentYear, currentMonth) + 1
-            ).map((day) => (
-              <p id="day" data-day={day} className={handleActiveDeparture(day)}>
+            ).map((day, i) => (
+              <p
+                key={i}
+                id="day"
+                data-day={day}
+                className={handleActiveDeparture(day)}
+              >
                 {day}
               </p>
             ))}
@@ -130,16 +135,21 @@ function DatePicker({ title, setArriveValue, setDepartureValue, oneway }) {
           </HeaderSC>
           <BodySC>
             <SevenColGridSC heading>
-              {getSortedDays(currentYear, currentMonth).map((day) => (
-                <p>{day}</p>
+              {getSortedDays(currentYear, currentMonth).map((day, i) => (
+                <p key={i}>{day}</p>
               ))}
             </SevenColGridSC>
             <SevenColGridSC onClick={handleSelectionArrive}>
               {range(
                 1,
                 getNumberOfDaysInMonth(currentYear, currentMonth) + 1
-              ).map((day) => (
-                <p id="day" data-day={day} className={handleActiveArrive(day)}>
+              ).map((day, i) => (
+                <p
+                  key={i}
+                  id="day"
+                  data-day={day}
+                  className={handleActiveArrive(day)}
+                >
                   {day}
                 </p>
               ))}

@@ -7,7 +7,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { showContext } from "../../Banner/Banner";
 
 function PassengersInput() {
-  const { showPassengers, setShowPassengers } = useContext(showContext);
+  const { showPassengers, setShowPassengers, setPassengersData } =
+    useContext(showContext);
   const [inputValue, setInputValue] = useState({
     adults: 0,
     children: 0,
@@ -25,6 +26,7 @@ function PassengersInput() {
 
   useEffect(() => {
     setTotalPassengers(adults + children + newBorn);
+    setPassengersData(inputValue);
   }, [adults, children, newBorn]);
 
   return (
