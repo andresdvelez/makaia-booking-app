@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormBodySC } from "../../MainForm/style";
 import CodeInput from "../CodeInput/CodeInput";
 import CountryInput from "../CountryInput/CountryInput";
@@ -7,11 +7,30 @@ import DestinationInput from "../DestinationInput/DestinationInput";
 import PassengersInput from "../PassengersInput/PassengersInput";
 
 function OneWayMenu() {
+  const [departureValue, setDepartureValue] = useState({
+    year: "YYYY",
+    month: "MM",
+    day: "DD",
+  });
+  const [arriveValue, setArriveValue] = useState({
+    yearArrive: "YYYY",
+    monthArrive: "MM",
+    dayArrive: "DD",
+  });
+
+  const { year, month, day } = departureValue;
+  const { yearArrive, monthArrive, dayArrive } = arriveValue;
+
   return (
     <FormBodySC>
       <CountryInput label="Origen" />
       <DestinationInput />
-      <DateInput label="Salida" />
+      <DateInput
+        value={`${year}/${month}/${day}`}
+        label="Salida"
+        setArriveValue={setArriveValue}
+        setDepartureValue={setDepartureValue}
+      />
       <PassengersInput />
       <CodeInput />
     </FormBodySC>

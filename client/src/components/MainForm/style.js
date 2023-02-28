@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 
 export const MainFormSC = styled.form``;
 
-export const OverlaySC = styled.div``;
+export const OverlaySC = styled.div`
+  cursor: pointer;
+`;
 
 export const BtnWrapperSC = styled.div`
   background-color: #fff;

@@ -87,5 +87,6 @@ export const FooterBtnSC = styled.button`
   background-color: #9d2479;
   border-radius: 30px;
   color: #f2f2f2;
+  cursor: pointer;
   padding: 15px 25px;
 `;
