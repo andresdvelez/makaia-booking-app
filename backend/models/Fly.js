@@ -15,19 +15,11 @@ const FlySchema = new Schema(
       type: String,
       required: true,
     },
-    class: {
-      type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
     price: {
       type: Number,
       required: true,
     },
-    seats: [{ number: Number, unavailableSeats: { type: [Date] } }],
+    seats: [{ number: Number, unavailableSeats: { type: [Boolean] } }],
   },
   { timestamps: true }
 );
