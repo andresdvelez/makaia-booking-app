@@ -19,7 +19,6 @@ function OneWayMenu() {
   });
 
   const { year, month, day } = departureValue;
-  const { yearArrive, monthArrive, dayArrive } = arriveValue;
 
   return (
     <FormBodySC>

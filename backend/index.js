@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
@@ -24,16 +24,14 @@ mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected");
 });
 
-const whiteList = ["http://localhost:3000"];
-
-app.use(cors({ origin: whiteList }));
+app.use(cors());
 
 // Middlewares
 app.use(cookieParser());
 
 app.use(express.json());
 
-app.get("/api/auth", authRoute);
+app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/destinations", destinationsRoute);
 app.use("/api/flights", fliesRoute);

@@ -63,6 +63,7 @@ function MainForm() {
       "flight-details",
       JSON.stringify({
         ...data,
+        oneway: isActive,
         departureDate: departureValue,
         combackDate: arriveValue,
         passengers: passengersData,
