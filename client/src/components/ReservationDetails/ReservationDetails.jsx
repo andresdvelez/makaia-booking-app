@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { monthNames } from "../../constants";
 import { flightBookingContext } from "../../Screens/Flights/Flights";
 import { TimeSC } from "../TimesReservation/style";
@@ -9,14 +10,17 @@ import {
   GroupSC,
   HeaderSC,
   LocationsSC,
+  RedirectionBtnSC,
   RowSC,
   TextSC,
   TopSC,
 } from "./style";
 
 function ReservationDetails() {
-  const { formData, luggage, flightsData, isShow, luggageType } =
+  const { formData, luggage, flightsData, isShow, luggageType, dataIdChild } =
     useContext(flightBookingContext);
+
+  const location = useLocation();
 
   return (
     <ContainerSC>
@@ -108,6 +112,12 @@ function ReservationDetails() {
           <p>${luggage} USD</p>
         </RowSC>
       </GroupSC>
+      {dataIdChild.length === 2 &&
+        location.pathname !== `/vuelos/${dataIdChild[0]?.id}` && (
+          <RedirectionBtnSC to={`/vuelos/${dataIdChild[0].id}`}>
+            Seleccionar asientos
+          </RedirectionBtnSC>
+        )}
     </ContainerSC>
   );
 }
