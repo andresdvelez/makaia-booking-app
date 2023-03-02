@@ -11,15 +11,19 @@ export const ContainerSC = styled.div`
   justify-content: space-between;
 `;
 
-export const InputBodySC = styled.div``;
+export const InputBodySC = styled.div`
+  cursor: pointer;
+  width: 100%;
+`;
 
 export const LabelSC = styled.p`
   color: rgba(0, 0, 0, 0.6);
   font-size: 0.8em;
 `;
 
-export const InputSC = styled.input`
+export const InputSC = styled.button`
   color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
   font-size: 0.9em;
 
   &::placeholder {

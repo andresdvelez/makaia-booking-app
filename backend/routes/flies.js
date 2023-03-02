@@ -13,7 +13,7 @@ const router = express.Router();
 // CREATE
 router.post("/:destinationid", verifyAdmin, createFly);
 // UPDATE
-router.put("/:id", verifyAdmin, updateFly);
+router.put("/:id", updateFly);
 // DELETE
 router.delete("/:id/:destinationid", verifyAdmin, deleteFly);
 // GET

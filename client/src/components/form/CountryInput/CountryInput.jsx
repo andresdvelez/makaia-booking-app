@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import useFetch from "../../../hooks/useFetch";
+import { showContext } from "../../Banner/Banner";
 import CountryDropdown from "../../CountryDropdown/CountryDropdown";
 import { ContainerSC, InputSC, LabelSC, OptionSC } from "./style";
 
 function CountryInput({ label }) {
-  const [isShow, setIsShow] = useState(false);
-  const [inputValue, setInputValue] = useState("Desde dónde viajas?");
+  const { showDepartureCountry, setShowDepartureCountry, register } =
+    useContext(showContext);
+  const [inputValue, setInputValue] = useState();
 
   const handleShow = () => {
-    setIsShow(true);
+    setShowDepartureCountry(true);
   };
 
   return (
     <ContainerSC>
-      <InputSC readOnly value={inputValue} onClick={handleShow} />
-      {isShow && (
-        <CountryDropdown setIsOpen={setIsShow} setInputValue={setInputValue} />
+      <InputSC
+        {...(inputValue && { ...register("departureCity") })}
+        readOnly
+        placeholder="Desde dónde viajas?"
+        value={inputValue}
+        onClick={handleShow}
+      />
+      {showDepartureCountry && (
+        <CountryDropdown setInputValue={setInputValue} />
       )}
       <LabelSC>{label}</LabelSC>
     </ContainerSC>

@@ -17,7 +17,6 @@ export const FormContainerSC = styled.aside`
   position: absolute;
   left: 50px;
   width: 560px;
-  z-index: 10;
 `;
 
 export const TitleSC = styled.h2`
