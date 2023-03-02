@@ -12,14 +12,15 @@ function Flights() {
   const [luggage, setLuggage] = useState(0);
   const [luggageType, setLuggageType] = useState();
   const [flightsData, setFlightsData] = useState([]);
+  const [dataIdChild, setDataIdChild] = useState([]);
 
-  const { data, loading, error } = useFetch(
+  const { data, loading } = useFetch(
     "http://localhost:8800/api/flights"
   );
 
   useEffect(() => {
     !loading && setFlightsData(data);
-  }, [data]);
+  }, [data, loading]);
 
   useEffect(() => {
     const getFormData = localStorage.getItem("flight-details");
@@ -38,6 +39,9 @@ function Flights() {
         setIsShow,
         luggageType,
         setLuggageType,
+        dataIdChild,
+        setDataIdChild,
+        loading,
       }}
     >
       <ContainerSC>

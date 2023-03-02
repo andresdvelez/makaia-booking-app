@@ -19,7 +19,7 @@ const FlySchema = new Schema(
       type: Number,
       required: true,
     },
-    seats: [{ number: Number, unavailableSeats: { type: [Boolean] } }],
+    seats: [{ number: Number, isHall: Boolean, unavailableSeats: Boolean }],
   },
   { timestamps: true }
 );

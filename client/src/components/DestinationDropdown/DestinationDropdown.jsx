@@ -8,13 +8,11 @@ function DestinationDropdown({ setInputValue }) {
   const [countries, setCountries] = useState([]);
   const { setShowArriveCountry } = useContext(showContext);
 
-  const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/destinations"
-  );
+  const { data, loading } = useFetch("http://localhost:8800/api/destinations");
 
   useEffect(() => {
     !loading && setCountries(data);
-  }, [data]);
+  }, [data, loading]);
 
   const handleClick = (inputValue) => {
     setShowArriveCountry(false);
@@ -28,16 +26,17 @@ function DestinationDropdown({ setInputValue }) {
         <SubtitleSC>A dónde viajas?</SubtitleSC>
       </HeaderSC>
       <BodySC>
-        {!loading &&
-          countries.map((country) => (
-            <OptionSC
-              onClick={() => handleClick(country?.name)}
-              type="button"
-              key={country._id}
-            >
-              <NameSC>{country.name}</NameSC>
-            </OptionSC>
-          ))}
+        {loading
+          ? "Loading..."
+          : countries.map((country) => (
+              <OptionSC
+                onClick={() => handleClick(country?.name)}
+                type="button"
+                key={country._id}
+              >
+                <NameSC>{country.name}</NameSC>
+              </OptionSC>
+            ))}
       </BodySC>
     </ContainerSC>
   );

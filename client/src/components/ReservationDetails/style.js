@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const ContainerSC = styled.aside`
@@ -55,4 +56,17 @@ export const RowSC = styled.div`
   padding: 0.5rem;
 
   ${({ bold }) => (bold ? "font-weight: bold" : "")}
+`;
+
+export const RedirectionBtnSC = styled(NavLink)`
+  background-color: #9d2479;
+  border-radius: 20px;
+  color: #fff;
+  padding: 0.7em;
+  font-size: 0.9rem;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

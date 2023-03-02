@@ -15,13 +15,11 @@ function CountryDropdown({ setInputValue }) {
   const [countries, setCountries] = useState([]);
   const { setShowDepartureCountry } = useContext(showContext);
 
-  const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/flights"
-  );
+  const { data, loading } = useFetch("http://localhost:8800/api/flights");
 
   useEffect(() => {
     !loading && setCountries(data);
-  }, [data]);
+  }, [data, loading]);
 
   const handleClick = (inputValue) => {
     setShowDepartureCountry(false);
@@ -35,16 +33,17 @@ function CountryDropdown({ setInputValue }) {
         <SubtitleSC>Desde dónde viajas?</SubtitleSC>
       </HeaderSC>
       <BodySC>
-        {!loading &&
-          countries.map((country) => (
-            <OptionSC
-              onClick={() => handleClick(country?.departureCity)}
-              type="button"
-              key={country._id}
-            >
-              <NameSC>{country?.departureCity}</NameSC>
-            </OptionSC>
-          ))}
+        {loading
+          ? "Loading..."
+          : countries.map((country) => (
+              <OptionSC
+                onClick={() => handleClick(country?.departureCity)}
+                type="button"
+                key={country._id}
+              >
+                <NameSC>{country?.departureCity}</NameSC>
+              </OptionSC>
+            ))}
       </BodySC>
     </ContainerSC>
   );

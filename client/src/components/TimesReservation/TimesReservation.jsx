@@ -21,10 +21,10 @@ import {
 } from "./style";
 
 // Icons
-import { FaSuitcase } from "react-icons/fa";
 import { useContext, useEffect } from "react";
 import { monthNames } from "../../constants";
 import { flightBookingContext } from "../../Screens/Flights/Flights";
+import { luggageOptions } from "./luggageData";
 
 function TimesReservation() {
   const {
@@ -32,32 +32,26 @@ function TimesReservation() {
     luggage,
     setLuggage,
     flightsData,
+    luggageType,
     setLuggageType,
     setIsShow,
+    dataIdChild,
+    setDataIdChild,
+    loading,
   } = useContext(flightBookingContext);
 
   useEffect(() => {
     flightsData.length && setLuggage(flightsData[0]?.price);
-  }, [flightsData]);
+  }, [flightsData, setLuggage]);
 
-  const handleSelect = (e) => {
-    setLuggageType(e.target.dataset["type"]);
-    setIsShow(true);
-    if (e.target.id == 0) {
-      setLuggage(flightsData[0]?.price + 100);
-      e.target.parentElement.children[0].classList.add("selectedSuit");
-      e.target.parentElement.children[1].classList.remove("selectedSuit");
-      e.target.parentElement.children[2].classList.remove("selectedSuit");
-    } else if (e.target.id == 1) {
-      setLuggage(flightsData[0]?.price + 200);
-      e.target.parentElement.children[0].classList.remove("selectedSuit");
-      e.target.parentElement.children[1].classList.add("selectedSuit");
-      e.target.parentElement.children[2].classList.remove("selectedSuit");
-    } else if (e.target.id == 2) {
-      setLuggage(flightsData[0]?.price + 300);
-      e.target.parentElement.children[0].classList.remove("selectedSuit");
-      e.target.parentElement.children[1].classList.remove("selectedSuit");
-      e.target.parentElement.children[2].classList.add("selectedSuit");
+  const handleSelection = (e) => {
+    if (e.target.id === "pack") {
+      setLuggageType(e.target.dataset["type"]);
+      setIsShow(true);
+      setDataIdChild([
+        ...dataIdChild,
+        { id: e.target.getAttribute("data-id") },
+      ]);
     }
   };
 
@@ -80,37 +74,39 @@ function TimesReservation() {
             </LocationsSC>
           </BodyHeaderSC>
           <SubtitleSC>Seleccion de horarios y equipajes</SubtitleSC>
-          <FlightsContainerSC>
-            {flightsData.map((flight) => (
-              <FlightSC data-id={flight?._id} key={flight._id}>
-                <FlightLeftSC>
-                  <TimeSC>{flight.departureTime}</TimeSC>
-                  <StopsContainerSC>
-                    <TextSC>1h 57min</TextSC>
-                    <div className="line"></div>
-                    <TextSC>Sin escalas</TextSC>
-                  </StopsContainerSC>
-                  <TimeSC>{flight.landingTime}</TimeSC>
-                </FlightLeftSC>
-                <FightRightSC>
-                  <LuggageSC id="0" onClick={handleSelect} data-type="sm">
-                    <FaSuitcase />
-                    <TextSC>1 objeto personal</TextSC>
-                    <PriceSC>$100 USD</PriceSC>
-                  </LuggageSC>
-                  <LuggageSC id="1" onClick={handleSelect} data-type="md">
-                    <FaSuitcase />
-                    <TextSC>Equipaje de mano</TextSC>
-                    <PriceSC>$200 USD</PriceSC>
-                  </LuggageSC>
-                  <LuggageSC id="2" onClick={handleSelect} data-type="lg">
-                    <FaSuitcase />
-                    <TextSC>Equipaje 25kg</TextSC>
-                    <PriceSC>$300 USD</PriceSC>
-                  </LuggageSC>
-                </FightRightSC>
-              </FlightSC>
-            ))}
+          <FlightsContainerSC onClick={handleSelection}>
+            {loading
+              ? "Loading..."
+              : flightsData.map((flight) => (
+                  <FlightSC key={flight._id}>
+                    <FlightLeftSC>
+                      <TimeSC>{flight.departureTime}</TimeSC>
+                      <StopsContainerSC>
+                        <TextSC>1h 57min</TextSC>
+                        <div className="line"></div>
+                        <TextSC>Sin escalas</TextSC>
+                      </StopsContainerSC>
+                      <TimeSC>{flight.landingTime}</TimeSC>
+                    </FlightLeftSC>
+                    <FightRightSC data-id={flight?._id}>
+                      {luggageOptions.map((pack) => (
+                        <LuggageSC
+                          key={pack.id}
+                          data-id={flight?._id}
+                          id="pack"
+                          className={
+                            luggage === luggageType ? "selectedSuit" : ""
+                          }
+                          data-type={pack.type}
+                        >
+                          {pack.icon}
+                          <TextSC>{pack.text}</TextSC>
+                          <PriceSC>${pack.price} USD</PriceSC>
+                        </LuggageSC>
+                      ))}
+                    </FightRightSC>
+                  </FlightSC>
+                ))}
           </FlightsContainerSC>
         </BodySC>
       </ContainerSC>
@@ -132,35 +128,37 @@ function TimesReservation() {
               </LocationsSC>
             </BodyHeaderSC>
             <SubtitleSC>Seleccion de horarios y equipajes</SubtitleSC>
-            <FlightsContainerSC>
-              <FlightSC>
-                <FlightLeftSC>
-                  <TimeSC>05:50 PM</TimeSC>
-                  <StopsContainerSC>
-                    <TextSC>1h 57min</TextSC>
-                    <div className="line"></div>
-                    <TextSC>Sin escalas</TextSC>
-                  </StopsContainerSC>
-                  <TimeSC>05:50 PM</TimeSC>
-                </FlightLeftSC>
-                <FightRightSC>
-                  <LuggageSC>
-                    <FaSuitcase />
-                    <TextSC>1 objeto personal</TextSC>
-                    <PriceSC>$100 USD</PriceSC>
-                  </LuggageSC>
-                  <LuggageSC>
-                    <FaSuitcase />
-                    <TextSC>Equipaje de mano</TextSC>
-                    <PriceSC>$200 USD</PriceSC>
-                  </LuggageSC>
-                  <LuggageSC>
-                    <FaSuitcase />
-                    <TextSC>Equipaje 25kg</TextSC>
-                    <PriceSC>$300 USD</PriceSC>
-                  </LuggageSC>
-                </FightRightSC>
-              </FlightSC>
+            <FlightsContainerSC onClick={handleSelection}>
+              {flightsData.map((flight) => (
+                <FlightSC key={flight._id}>
+                  <FlightLeftSC>
+                    <TimeSC>{flight.departureTime}</TimeSC>
+                    <StopsContainerSC>
+                      <TextSC>1h 57min</TextSC>
+                      <div className="line"></div>
+                      <TextSC>Sin escalas</TextSC>
+                    </StopsContainerSC>
+                    <TimeSC>{flight.landingTime}</TimeSC>
+                  </FlightLeftSC>
+                  <FightRightSC data-id={flight?._id}>
+                    {luggageOptions.map((pack) => (
+                      <LuggageSC
+                        key={pack.id}
+                        data-id={flight?._id}
+                        id="pack"
+                        className={
+                          luggage === luggageType ? "selectedSuit" : ""
+                        }
+                        data-type={pack.type}
+                      >
+                        {pack.icon}
+                        <TextSC>{pack.text}</TextSC>
+                        <PriceSC>${pack.price} USD</PriceSC>
+                      </LuggageSC>
+                    ))}
+                  </FightRightSC>
+                </FlightSC>
+              ))}
             </FlightsContainerSC>
           </BodySC>
         </ContainerSC>
