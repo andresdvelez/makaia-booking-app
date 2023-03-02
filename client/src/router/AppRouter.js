@@ -6,6 +6,7 @@ import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 import Flights from "../Screens/Flights/Flights";
 import TimesReservation from "../components/TimesReservation/TimesReservation";
 import SeatScreen from "../Screens/SeatScreen/SeatScreen";
+import Login from "../Screens/login/Login";
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
           <Route path="/vuelos" element={<TimesReservation />} />
           <Route path="/vuelos:id" element={<SeatScreen />} />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

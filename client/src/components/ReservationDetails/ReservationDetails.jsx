@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { monthNames } from "../../constants";
+import { AuthContext } from "../../context/authContext";
 import { flightBookingContext } from "../../Screens/Flights/Flights";
 import { TimeSC } from "../TimesReservation/style";
 import {
@@ -19,6 +20,8 @@ import {
 function ReservationDetails() {
   const { formData, luggage, flightsData, isShow, luggageType, dataIdChild } =
     useContext(flightBookingContext);
+
+  const { user } = useContext(AuthContext);
 
   const location = useLocation();
 
@@ -112,12 +115,16 @@ function ReservationDetails() {
           <p>${luggage} USD</p>
         </RowSC>
       </GroupSC>
-      {dataIdChild.length === 2 &&
+      {user ? (
+        dataIdChild.length === 2 &&
         location.pathname !== `/vuelos/${dataIdChild[0]?.id}` && (
           <RedirectionBtnSC to={`/vuelos/${dataIdChild[0].id}`}>
             Seleccionar asientos
           </RedirectionBtnSC>
-        )}
+        )
+      ) : (
+        <RedirectionBtnSC to="/login">Ingresar sesión</RedirectionBtnSC>
+      )}
     </ContainerSC>
   );
 }
