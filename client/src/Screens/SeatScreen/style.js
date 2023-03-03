@@ -64,6 +64,11 @@ export const SeatSC = styled.button`
   height: 3rem;
   width: 3rem;
 
+  &:hover {
+    color: #fff;
+    background-color: #9d2479;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;

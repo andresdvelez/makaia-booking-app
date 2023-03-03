@@ -18,49 +18,48 @@ import {
   TextSC,
   TimeSC,
   TitleSC,
+  LuggagueContainerSC,
 } from "./style";
 
 // Icons
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { monthNames } from "../../constants";
 import { flightBookingContext } from "../../Screens/Flights/Flights";
 import { luggageOptions } from "./luggageData";
+import { RedirectionBtnSC } from "../ReservationDetails/style";
 
 function TimesReservation() {
   const {
     formData,
-    luggage,
-    setLuggage,
     flightsData,
-    luggageType,
-    setLuggageType,
-    setIsShow,
-    dataIdChild,
     setDataIdChild,
     loading,
+    setLuggageType,
+    setIsShow,
+    setLuggage,
   } = useContext(flightBookingContext);
+  const [luggageDeparture, setLuggageDeparture] = useState(luggageOptions);
 
-  useEffect(() => {
-    flightsData.length && setLuggage(flightsData[0]?.price);
-  }, [flightsData, setLuggage]);
-
-  const handleSelection = (e) => {
-    if (e.target.id === "pack") {
-      setLuggageType(e.target.dataset["type"]);
-      setIsShow(true);
-      setDataIdChild([
-        ...dataIdChild,
-        { id: e.target.getAttribute("data-id") },
-      ]);
-    }
+  const handleSelectDeparture = (e) => {
+    setLuggageDeparture(
+      luggageDeparture.map((l) => {
+        l.isActive = l?.id === parseInt(e.target?.id);
+        return l;
+      })
+    );
+    setDataIdChild(true);
+    setIsShow(true);
+    setLuggageType(e.target.getAttribute("data-type"));
+    setLuggage(
+      Number(e.target.getAttribute("data-price")) + flightsData[0]?.price
+    );
   };
-
   return (
     <MainContainerSC>
       <ContainerSC>
         <HeaderSC>
           <TitleSC>Vuelo de salida</TitleSC>
-          <ButtonSC>Cambiar vuelo</ButtonSC>
+          <RedirectionBtnSC to='/'>Cambiar vuelo</RedirectionBtnSC>
         </HeaderSC>
         <BodySC>
           <BodyHeaderSC>
@@ -74,7 +73,23 @@ function TimesReservation() {
             </LocationsSC>
           </BodyHeaderSC>
           <SubtitleSC>Seleccion de horarios y equipajes</SubtitleSC>
-          <FlightsContainerSC onClick={handleSelection}>
+          <LuggagueContainerSC>
+            {luggageDeparture.map((pack) => (
+              <LuggageSC
+                key={pack?.id}
+                id={pack?.id}
+                onClick={handleSelectDeparture}
+                className={pack.isActive && "selectedSuit"}
+                data-type={pack.type}
+                data-price={pack.price}
+              >
+                {pack.icon}
+                <TextSC>{pack.text}</TextSC>
+                <PriceSC>${pack.price} USD</PriceSC>
+              </LuggageSC>
+            ))}
+          </LuggagueContainerSC>
+          <FlightsContainerSC>
             {loading
               ? "Loading..."
               : flightsData.map((flight) => (
@@ -88,23 +103,6 @@ function TimesReservation() {
                       </StopsContainerSC>
                       <TimeSC>{flight.landingTime}</TimeSC>
                     </FlightLeftSC>
-                    <FightRightSC data-id={flight?._id}>
-                      {luggageOptions.map((pack) => (
-                        <LuggageSC
-                          key={pack.id}
-                          data-id={flight?._id}
-                          id="pack"
-                          className={
-                            luggage === luggageType ? "selectedSuit" : ""
-                          }
-                          data-type={pack.type}
-                        >
-                          {pack.icon}
-                          <TextSC>{pack.text}</TextSC>
-                          <PriceSC>${pack.price} USD</PriceSC>
-                        </LuggageSC>
-                      ))}
-                    </FightRightSC>
                   </FlightSC>
                 ))}
           </FlightsContainerSC>
@@ -128,7 +126,7 @@ function TimesReservation() {
               </LocationsSC>
             </BodyHeaderSC>
             <SubtitleSC>Seleccion de horarios y equipajes</SubtitleSC>
-            <FlightsContainerSC onClick={handleSelection}>
+            <FlightsContainerSC>
               {flightsData.map((flight) => (
                 <FlightSC key={flight._id}>
                   <FlightLeftSC>
@@ -140,23 +138,6 @@ function TimesReservation() {
                     </StopsContainerSC>
                     <TimeSC>{flight.landingTime}</TimeSC>
                   </FlightLeftSC>
-                  <FightRightSC data-id={flight?._id}>
-                    {luggageOptions.map((pack) => (
-                      <LuggageSC
-                        key={pack.id}
-                        data-id={flight?._id}
-                        id="pack"
-                        className={
-                          luggage === luggageType ? "selectedSuit" : ""
-                        }
-                        data-type={pack.type}
-                      >
-                        {pack.icon}
-                        <TextSC>{pack.text}</TextSC>
-                        <PriceSC>${pack.price} USD</PriceSC>
-                      </LuggageSC>
-                    ))}
-                  </FightRightSC>
                 </FlightSC>
               ))}
             </FlightsContainerSC>

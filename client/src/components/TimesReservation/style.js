@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MainContainerSC = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -52,9 +53,11 @@ export const SubtitleSC = styled.p`
 `;
 export const FlightsContainerSC = styled.div`
   padding-inline: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
+  width: 100%;
 
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 0.5rem;
 `;
@@ -64,7 +67,9 @@ export const FlightSC = styled.div`
   -webkit-backdrop-filter: blur(11.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 1rem;
+  padding: 2rem;
+  cursor: pointer;
+  width: 80%;
 
   display: flex;
   align-items: center;
@@ -111,6 +116,15 @@ export const FightRightSC = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+export const LuggagueContainerSC = styled.div`
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;
+`;
+
 export const LuggageSC = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
