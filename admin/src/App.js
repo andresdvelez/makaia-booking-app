@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import { Navigate } from "react-router-dom";
+import { destinationColumns, flightColumns, userColumns } from "./datatablesource";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -43,7 +44,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <List />
+                    <List columns={userColumns} />
                   </ProtectedRoute>
                 }
               />
@@ -64,12 +65,12 @@ function App() {
                 }
               />
             </Route>
-            <Route path="products">
+            <Route path="destinations">
               <Route
                 index
                 element={
                   <ProtectedRoute>
-                    <List />
+                    <List columns={destinationColumns} />
                   </ProtectedRoute>
                 }
               />
@@ -81,6 +82,34 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <New inputs={productInputs} title="Add New Product" />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="flights">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={flightColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":productId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
+              
               <Route
                 path="new"
                 element={
