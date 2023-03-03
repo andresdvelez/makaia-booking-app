@@ -53,78 +53,27 @@ export const destinationInputs = [
 
 export const flightInputs = [
   {
-    id: "name",
-    label: "Name",
+    id: "departureTime",
+    label: "Hora de salida",
     type: "text",
-    placeholder: "My Hotel",
+    placeholder: "10:30 AM",
   },
   {
-    id: "type",
-    label: "Type",
+    id: "landingTime",
+    label: "Hora de llegada",
     type: "text",
-    placeholder: "hotel",
+    placeholder: "3:50 PM",
   },
   {
-    id: "city",
+    id: "departureCity",
     label: "City",
     type: "text",
-    placeholder: "New York",
-  },
-  {
-    id: "address",
-    label: "Address",
-    type: "text",
-    placeholder: "elton st, 216",
-  },
-  {
-    id: "distance",
-    label: "Distance from City Center",
-    type: "text",
-    placeholder: "500",
-  },
-  {
-    id: "title",
-    label: "Title",
-    type: "text",
-    placeholder: "The best Hotel",
-  },
-  {
-    id: "desc",
-    label: "Description",
-    type: "text",
-    placeholder: "description",
-  },
-  {
-    id: "cheapestPrice",
-    label: "Price",
-    type: "text",
-    placeholder: "100",
-  },
-];
-
-export const roomInputs = [
-  {
-    id: "title",
-    label: "Title",
-    type: "text",
-    placeholder: "2 bed room",
-  },
-  {
-    id: "desc",
-    label: "Description",
-    type: "text",
-    placeholder: "King size bed, 1 bathroom",
+    placeholder: "Ciudad de origen",
   },
   {
     id: "price",
-    label: "Price",
-    type: "number",
-    placeholder: "100",
-  },
-  {
-    id: "maxPeople",
-    label: "Max People",
-    type: "number",
-    placeholder: "2",
+    label: "Precio",
+    type: "text",
+    placeholder: "300",
   },
 ];
