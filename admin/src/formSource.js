@@ -36,40 +36,22 @@ export const userInputs = [
   },
 ];
 
-export const productInputs = [
+export const destinationInputs = [
   {
-    id: 1,
-    label: "Title",
+    id: "name",
+    label: "Nombre",
     type: "text",
-    placeholder: "Apple Macbook Pro",
+    placeholder: "Nombre",
   },
   {
-    id: 2,
-    label: "Description",
+    id: "cheapestPrice",
+    label: "Precio minimo",
     type: "text",
-    placeholder: "Description",
-  },
-  {
-    id: 3,
-    label: "Category",
-    type: "text",
-    placeholder: "Computers",
-  },
-  {
-    id: 4,
-    label: "Price",
-    type: "text",
-    placeholder: "100",
-  },
-  {
-    id: 5,
-    label: "Stock",
-    type: "text",
-    placeholder: "in stock",
+    placeholder: "$300",
   },
 ];
 
-export const hotelInputs = [
+export const flightInputs = [
   {
     id: "name",
     label: "Name",
