@@ -1,0 +1,26 @@
+{
+  "name": "sprint-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && yarn start\" \"cd client && yarn dev\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresdvelez/makaia-booking-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andresdvelez/makaia-booking-app/issues"
+  },
+  "homepage": "https://github.com/andresdvelez/makaia-booking-app#readme",
+  "dependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

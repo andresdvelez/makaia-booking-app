@@ -25,7 +25,6 @@ import { useContext, useEffect } from "react";
 import { monthNames } from "../../constants";
 import { flightBookingContext } from "../../Screens/Flights/Flights";
 import { luggageOptions } from "./luggageData";
-import { AuthContext } from "../../context/authContext";
 
 function TimesReservation() {
   const {

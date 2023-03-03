@@ -36,7 +36,6 @@ function SeatScreen() {
     const flightData = flightsData?.filter(
       (flight) => flight?._id === params.id
     );
-    flightData.length && console.log(flightData);
     setFlight(flightData);
   }, [flightsData, params.id]);
 
