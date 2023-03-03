@@ -42,21 +42,23 @@ function Login() {
   };
 
   return (
-    <section>
-      <div>
+    <section className="login">
+      <div className="lcontainer">
         <input
           type="text"
           placeholder="Nombre de usuario"
           id="username"
+          className="linput"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Contraseña"
           id="password"
+          className="linput"
           onChange={handleChange}
         />
-        <button disabled={loading} onClick={handleClick}>
+        <button className="lbutton" disabled={loading} onClick={handleClick}>
           Iniciar sesión
         </button>
         {error && <span>{error.message}</span>}

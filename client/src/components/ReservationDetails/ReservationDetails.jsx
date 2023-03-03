@@ -116,9 +116,9 @@ function ReservationDetails() {
         </RowSC>
       </GroupSC>
       {user ? (
-        dataIdChild.length === 2 &&
+        dataIdChild &&
         location.pathname !== `/vuelos/${dataIdChild[0]?.id}` && (
-          <RedirectionBtnSC to={`/vuelos/${dataIdChild[0].id}`}>
+          <RedirectionBtnSC to={`/vuelos/${flightsData[0]?._id}`}>
             Seleccionar asientos
           </RedirectionBtnSC>
         )

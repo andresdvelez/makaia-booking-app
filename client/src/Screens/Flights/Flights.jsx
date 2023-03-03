@@ -12,7 +12,7 @@ function Flights() {
   const [luggage, setLuggage] = useState(0);
   const [luggageType, setLuggageType] = useState();
   const [flightsData, setFlightsData] = useState([]);
-  const [dataIdChild, setDataIdChild] = useState([]);
+  const [dataIdChild, setDataIdChild] = useState(false);
 
   const { data, loading } = useFetch(
     "http://localhost:8800/api/flights"

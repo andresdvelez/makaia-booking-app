@@ -59,12 +59,18 @@ export const RowSC = styled.div`
 `;
 
 export const RedirectionBtnSC = styled(NavLink)`
-  background-color: #9d2479;
+  background-color: #fff;
+  border: 1px solid #9d2479;
   border-radius: 20px;
-  color: #fff;
-  padding: 0.7em;
-  font-size: 0.9rem;
+  color: #9d2479;
+  padding: 0.8em;
+  font-size: 0.8rem;
   text-decoration: none;
+
+  &:hover {
+    background-color: #9d2479;
+    color: #fff;
+  }
 
   display: flex;
   align-items: center;
